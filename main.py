@@ -1,5 +1,4 @@
 import multiplayer
-import test
 import singleplayer
 
 
@@ -27,7 +26,7 @@ Fermi: One digit is correct and in the right position''')
             print("-" * 10)
         elif user_input == "2":
             print("-" * 10)
-            test.intro()
+            singleplayer.intro()
             print("-" * 10)
         elif user_input == "3":
             print("-" * 10)

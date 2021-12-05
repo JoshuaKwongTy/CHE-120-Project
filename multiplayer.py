@@ -6,7 +6,16 @@ MAX_GUESS = 0
 
 
 def getSecretNum():
-    #Returns a string of unique random digits that is NUM_DIGITS long
+    """ () -> str
+    Returns a string of unique random digits that is NUM_DIGITS long
+
+    >>>getSecretNum()
+    123
+    >>>getSecretNum()
+    456
+    >>>getSecretNum()
+    789
+    """
     numbers = list(range(10))
     random.shuffle(numbers)
     secretNum = ''
@@ -16,7 +25,16 @@ def getSecretNum():
 
 
 def getClues(guess,secretNum):
+    """ (str, str) -> str
     #Returns a string with the Pico, Fermi, & Bagels clues to the user
+
+    >>>getClues("123", "358")
+    Pico
+    >>>getClues("456", "468")
+    Fermi Pico
+    >>>getClues("421", "421")
+    You got it!
+    """
     if guess == secretNum:
         return 'You got it!'
     clues = []
@@ -32,7 +50,17 @@ def getClues(guess,secretNum):
 
 
 def isOnlyDigits(num):
+    """ (str) -> bool
+
     #Returns True if num is a string of only digits. Otherwise returns False.
+
+    >>>isOnlyDigits("1")
+    True
+    >>>isOnlyDigits("512")
+    True
+    >>>isOnlyDigits("1k8")
+    False
+    """
     if num == "":
         return False
     for i in num:
@@ -42,7 +70,20 @@ def isOnlyDigits(num):
 
 
 def tries_input():
+    """ () -> int
+
     # Returns the number of guesses the user enters if the input is valid
+
+    >>>tries_input()
+    How many tries do you want for your game (limit of 15)?: 14
+    14
+    >>>tries_input()
+    How many tries do you want for your game (limit of 15)?: 16
+    Invalid input!
+    >>>tries_input()
+    How many tries do you want for your game (limit of 15)?: k
+    Invalid input!
+    """
     while True:
         max_guess_input = input("How many tries do you want for your game (limit of 15)?: ")
         if max_guess_input.isdigit():  # Checks if the input is an integer input
@@ -56,7 +97,21 @@ def tries_input():
 
 
 def gamemode_type():
+    """ () -> int
+
     # Returns the number of seconds the user has when the user has chosen a valid game mode
+
+    >>>gamemode_type()
+    Enter in the number associated with the gamemode you want to play (1,2,3): 3
+    75
+    >>>gamemode_type()
+    Enter in the number associated with the gamemode you want to play (1,2,3): 4
+    Invalid input!
+    >>>gamemode_type()
+    Enter in the number associated with the gamemode you want to play (1,2,3): k
+    Invalid input!
+
+    """
     while True:
         gamemode_input = input("Enter in the number associated with the gamemode you want to play (1,2,3): ")
         if gamemode_input.isdigit():
@@ -73,7 +128,20 @@ def gamemode_type():
 
 
 def yes_or_no():
+    """ () -> str
+
     # Returns if the user said yes or no
+
+    >>>yes_or_no()
+    Yes or no?: Yes
+    Yes
+    >>>yes_or_no()
+    Yes or no?: No
+    No
+    >>>yes_or_no()
+    Yes or no?: 62
+    Invalid input!
+    """
     while True:
         user_continue = input("Yes or no?: ").lower()
         if user_continue == "yes":
@@ -84,8 +152,21 @@ def yes_or_no():
             print("Invalid input!")
 
 
-def guess_input(guesses):
+def guess_input(guesses, NUM_DIGITS):
+    """ (int, int) -> str
+
     # Returns the user's guess if their input is valid
+
+    >>>guess_input(3)
+    Guess #4: 521
+    521
+    >>>guess_input(5)
+    Guess #6: code
+    Please enter in a valid input!
+    >>>guess_input(10)
+    Guess #11: 1234
+    Please enter in 3 digits in your guess
+    """
     guess = ""
     while len(guess) != NUM_DIGITS or not isOnlyDigits(guess):
         guess = input(f"Guess #{guesses + 1}: ")
@@ -151,7 +232,7 @@ Are you happy with these settings?''')
             while guesses1 < MAX_GUESS and player1_win is False and actual_time1 <= timer1: # Player 1 Turn loop
                 print("-" * 10)
                 print("Player 1 Turn")
-                guess = guess_input(guesses1)
+                guess = guess_input(guesses1, NUM_DIGITS)
                 actual_time1 = actual_time1 + (time.perf_counter() - time_input - time_before) # Checks the time it took for the user to input their guess
                 time_before = time.perf_counter() - time_input # Saves the time when the user is done inputting their guess (minus their input time)
                 if actual_time1 <= timer1:
@@ -178,7 +259,7 @@ Are you happy with these settings?''')
                     break
                 print("-" * 10)
                 print("Player 2 Turn")
-                guess = guess_input(guesses2)
+                guess = guess_input(guesses2, NUM_DIGITS)
                 actual_time2 = actual_time2 + (time.perf_counter() - time_input - time_before) # Checks the time it took for the user to input their guess
                 time_before = time.perf_counter() - time_input # Saves the time when the user is done inputting their guess (minus their input time)
                 if actual_time2 <= timer2:
