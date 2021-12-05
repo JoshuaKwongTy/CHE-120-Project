@@ -92,6 +92,3 @@ def intro():  # Allows for the user to choose their gamemode
                     k = [MAX_GUESS] + [NUM_DIGITS]  # makes k be a list of MAX_GUESS and NUM_DIGITS
                     output(k)  # Calls the output function with the variable k
                     break
-
-
-# print("-"*10)
