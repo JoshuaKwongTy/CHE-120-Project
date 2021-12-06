@@ -192,13 +192,13 @@ def output():
             MAX_GUESS = tries_input()
             print("-" *10)
 
-            print('''What gamemode would you like?
+            print('''What gamemode would you like to play?
 1. Blitz (15 seconds total)
 2. Normal (50 seconds total)
 3. Casual (75 seconds total)''')
             timer1 = 0
             timer2 = 0
-            timer = gamemode_type()
+            timer = gamemode_type() # Calls gamemode_type to get the time limit of guesses
             timer1 = timer
             timer2 = timer
 
@@ -208,16 +208,16 @@ def output():
 Number of guesses: {MAX_GUESS}
 Time To Guess: {timer1} seconds
 Are you happy with these settings?''')
-            user_continue = yes_or_no()
+            user_continue = yes_or_no() # Calls the yes_or_no function to get if the user enters in yes or bo
             if user_continue == "yes":
                 loop = False
             elif user_continue == "no":
                 print("Bringing you to the beginning...")
-                time.sleep(1)
+                time.sleep(1) # Waits for one second which makes the program more user friendly
                 print("-" * 10)
 
         print("-" * 10)
-        secret_num = getSecretNum()
+        secret_num = getSecretNum() # Gets the secret number
         print(f"I am thinking of a {NUM_DIGITS}-digit number, meaning your guesses must also be {NUM_DIGITS} digits. Try to guess what it is.")
         time_input = time.perf_counter() # Keeps track of how long the user takes to enter in their settings
         win = True
@@ -285,14 +285,14 @@ Are you happy with these settings?''')
                 break # This means that they both lost, so we do not need to run it again
 
         print("-" * 10)
-        if player1_win:
+        if player1_win: # Checks if player one wins
             print("Congratulations! Player 1 has won!")
-        elif player2_win:
+        elif player2_win: # Checks if player two wins
             print("Congratulations! Player 2 has won!")
         else:
             print("No one has won. The number was " + str(secret_num))
         print("-" * 10)
         print("Do you want to play again?")
-        answer = yes_or_no()
+        answer = yes_or_no() # Calls the yes_or_no function to check if the user enters in yes or no
         if answer == "no":
             play_again = False # If the user doesn't want to play again, it breaks the big loop
