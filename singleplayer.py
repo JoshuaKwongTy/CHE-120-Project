@@ -6,13 +6,13 @@ def getSecretNum(NUM_DIGITS):
     numbers = list(range(10))
     random.shuffle(numbers)
 
-    ">>> with the use of the random module we are able to randomize numbers from 1 to 10"
+    ">>> with the use of the random module we are able to generate a random number that is NUM_DIGITS long"
 
     secretNum = ''
     for i in range(NUM_DIGITS):
         secretNum += str(numbers[i])
 
-    ">>> Takes the digits from the shuffeled numbers, then adds it to a blank string"
+    ">>> Takes the digits from the shuffled numbers, then adds it to a blank list"
 
     return secretNum
 
@@ -20,7 +20,7 @@ def getSecretNum(NUM_DIGITS):
 def getClues(guess, secretNum):
     # Returns a string with the Pico, Fermi, & Bagels clues to the user
     if guess == secretNum:
-        return 'You got it'
+        return 'You got it!'
     clues = []
     for i in range(len(guess)):
         if guess[i] == secretNum[i]:
@@ -46,10 +46,9 @@ def isOnlyDigits(num):
 def output(k):  # Where the main game takes place for single player
     MAX_GUESS = k[0]  # takes the max_guess value from list k, which was formed in the intro function
     NUM_DIGITS = k[1]  # takes the num_digits value from list k
-    t = True
-    while t != False:
+    while True:
         secretNum = getSecretNum(NUM_DIGITS)
-        print("I have thought up a number. You have %s guesses to get it." % (MAX_GUESS))
+        print("I have thought of a number. You have %s guesses to get it." % (MAX_GUESS))
 
         guessesTaken = 1
         while guessesTaken <= MAX_GUESS:
@@ -67,9 +66,9 @@ def output(k):  # Where the main game takes place for single player
             print(getClues(guess, secretNum))  # prints the clues
             guessesTaken += 1  # adds one to guesses taken
 
-            if guess == secretNum:  # if guess is equal secret num break the loop and "win"
+            if guess == secretNum:  # if guess is equal to the "secretnumber" break the loop and "win"
                 break
-            if guessesTaken > MAX_GUESS:  # if guesses taken is more than Max guesses lose the game
+            if guessesTaken > MAX_GUESS:  # if guesses taken is more than the max guesses, you lose the game
                 print("You ran out of guesses. The answer was %s" % secretNum)
         print("Do you want to play again?(yes or no)")
         if input().lower().startswith('y'):
@@ -79,15 +78,14 @@ def output(k):  # Where the main game takes place for single player
 
 def intro():  # Allows for the user to choose their gamemode
     while True:
-        MAX_GUESS = input("How many guesses would you like? (The recomened number is 10) ")
-        if MAX_GUESS.isdigit() is True and int(MAX_GUESS) > 0:  # makes sure that the input is a digit
-            MAX_GUESS = int(MAX_GUESS)
-            NUM_DIGITS = input("How many numbers would you like to guess (The recomened number is 3) ")
-
-            if NUM_DIGITS.isdigit() == True and int(NUM_DIGITS) > 0:
+        MAX_GUESS = input("How many guesses would you like? (The recommended number of guesses is 10) ")
+        if MAX_GUESS.isdigit() is True:  # makes sure that the input is a digit
+            MAX_GUESS = int(MAX_GUESS)  # makes MAX_GUESS have the type int instead of the type string
+            NUM_DIGITS = input(
+                "How many digits long would you like the number to guess be? (The recommended length is 3) ")
+            if NUM_DIGITS.isdigit() == True:
                 NUM_DIGITS = int(NUM_DIGITS)  # makes NUM_DIGITS have type int instead of type string
-                print(f"Are you fine with your choices, Gueses: {MAX_GUESS}, Numbers: {NUM_DIGITS}")
-
+                print(f"Are you fine with your choices, Guesses: {MAX_GUESS}, Numbers to guess: {NUM_DIGITS}")
                 if input().lower().startswith('y'):  # makes sure that the user is happy with their current settings
                     k = [MAX_GUESS] + [NUM_DIGITS]  # makes k be a list of MAX_GUESS and NUM_DIGITS
                     output(k)  # Calls the output function with the variable k

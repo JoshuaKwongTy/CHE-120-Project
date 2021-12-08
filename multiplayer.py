@@ -189,18 +189,16 @@ def output():
     while play_again is True: # Main big loop that contains the whole game . Will be used at the end to see if the user wants to play again
         loop = True
         while loop: # Loop to keep running if the user is unhappy with their settings
-            MAX_GUESS = tries_input()
-            print("-" *10)
+            MAX_GUESS = tries_input() # Calls the tries_input function to get the number of tries the user wants
+            print("-" *10) # User friendly text
 
             print('''What gamemode would you like to play?
 1. Blitz (15 seconds total)
 2. Normal (50 seconds total)
 3. Casual (75 seconds total)''')
-            timer1 = 0
-            timer2 = 0
             timer = gamemode_type() # Calls gamemode_type to get the time limit of guesses
-            timer1 = timer
-            timer2 = timer
+            timer1 = timer # Assigns the timer the user entered to the timer for player 1
+            timer2 = timer # Assigns the timer the user entered to the timer for player 2
 
             print("-" *10)
 
