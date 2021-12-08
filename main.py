@@ -1,3 +1,5 @@
+# Names: Joshua Kwong (20938611), Aydan Polkinghorne (20964201), Denis Tyan (20929619)
+
 import multiplayer
 import singleplayer
 
