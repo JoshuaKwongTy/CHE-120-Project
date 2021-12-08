@@ -294,3 +294,4 @@ Are you happy with these settings?''')
         answer = yes_or_no() # Calls the yes_or_no function to check if the user enters in yes or no
         if answer == "no":
             play_again = False # If the user doesn't want to play again, it breaks the big loop
+
